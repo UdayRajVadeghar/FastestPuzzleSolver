@@ -14,7 +14,7 @@ function createBoard() {
       let input = document.createElement("input");
       input.setAttribute("type", "number");
       input.setAttribute("min", "1");
-      input.setAttribute("max", "10");
+      input.setAttribute("max", "9");
       td.appendChild(input);
       tr.appendChild(td);
     }
@@ -76,7 +76,7 @@ function solveSudoku(quickSolve) {
     }
   } else {
     displayError(
-      "Invalid input detected. Please enter numbers between 1 and 10."
+      "Invalid input detected. Please enter numbers between 1 and 9."
     );
   }
 }
@@ -109,7 +109,7 @@ async function solveHelperWithVisualization(board, row, col, dp) {
   if (board[row][col] !== 0)
     return await solveHelperWithVisualization(board, row, col + 1, dp);
 
-  for (let num = 1; num <= SIZE + 1; num++) {
+  for (let num = 1; num <= SIZE; num++) {
     if (isValidMove(board, row, col, num)) {
       board[row][col] = num;
       setBoard(board);
@@ -137,7 +137,7 @@ function solveHelper(board, row, col, dp) {
   if (col === SIZE) return solveHelper(board, row + 1, 0, dp);
   if (board[row][col] !== 0) return solveHelper(board, row, col + 1, dp);
 
-  for (let num = 1; num <= SIZE + 1; num++) {
+  for (let num = 1; num <= SIZE; num++) {
     if (isValidMove(board, row, col, num)) {
       board[row][col] = num;
       if (solveHelper(board, row, col + 1, dp)) {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoized Sudoku Solver</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Memoized Sudoku Solver</h1>
+    <table id="sudoku-board">
+        <!-- JavaScript will populate this table -->
+    </table>
+    <div class="buttons">
+        <button onclick="solveSudoku(false)">Solve Step-by-Step</button>
+        <button onclick="solveSudoku(true)">Quick Solve</button>
+        <button onclick="clearBoard()">Clear</button>
+    </div>
+    <div class="speed-control">
+        <label for="speed">Speed:</label>
+        <input type="range" id="speed" name="speed" min="10" max="1000" value="100" oninput="updateSpeed(this.value)">
+        <span id="speed-value">100ms</span>
+    </div>
+    <p id="error-message"></p>
+    <div id="explanation">
+        <h2>How it Works</h2>
+        <p>This Sudoku solver uses dynamic programming (DP) to solve the puzzle. The algorithm works as follows:</p>
+        <ul>
+            <li>It iterates over each cell in the grid.</li>
+            <li>For each empty cell, it tries all possible numbers (1-10) and checks if placing the number is a valid move.</li>
+            <li>If placing the number is valid, it recursively attempts to solve the rest of the grid with the current configuration.</li>
+            <li>If the grid is solved, it returns true, otherwise, it backtracks and tries the next possible number.</li>
+            <li>Dynamic programming helps by memoizing (storing) previously computed results to avoid redundant calculations.</li>
+        </ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
